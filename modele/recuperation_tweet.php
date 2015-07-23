@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1); 
+ini_set('log_errors', 1); 
+ini_set('error_log', dirname(__FILE__) . '/error_log.txt'); 
+error_reporting(E_ALL); 
 /**
  * Description : Recuperation du tweet envoyer par l'utilisateur et insertion dans la bdd
  * @author  Quentin Aslan <quentin.aslan@outlook.com>
@@ -27,7 +31,7 @@ if($verification != "twitter.com"){
 	$img = $content->user->profile_image_url;
 	$date_twitter = $content->created_at;
 
-	$rq_ajouter_tweet = $bdd->prepare("INSERT INTO tweets (id_tweet, id_tweet_tweap, pseudo_twitter, nom_twitter, id_membre, img, message, date_tweap, date_twitter, spread, vue, like, dislike) VALUES (:id_tweet, '', :pseudo_twitter, :nom_twitter, '$id_membre', :img, :message, NOW(), '$date_twitter', '0', '0', '0', '0') ");
+	$rq_ajouter_tweet = $bdd->prepare("INSERT INTO tweets (id_tweet, id_tweet_tweap, pseudo_twitter, nom_twitter, id_membre, img, message, date_tweap, date_twitter, spread, view, _like, dislike, outdated) VALUES (:id_tweet, '',:pseudo_twitter, :nom_twitter, '$id_membre', :img, :message, NOW(), '$date_twitter', '0', '0', '0', '0', '0') ");
 	$rq_ajouter_tweet->execute(array(
 								'id_tweet' => $id_tweet,
 								'pseudo_twitter' => $pseudo_twitter,
