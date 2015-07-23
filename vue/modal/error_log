@@ -1,0 +1,6 @@
+[10-Jul-2015 14:00:06 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/tweap2015/public_html/vue/modal/vue_tweet.php on line 4
+[10-Jul-2015 14:00:52 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/tweap2015/public_html/vue/modal/vue_tweet.php on line 4
+[12-Jul-2015 13:39:17 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/tweap2015/public_html/vue/modal/account.php on line 3
+[12-Jul-2015 13:40:41 UTC] PHP Fatal error:  Call to a member function rowCount() on a non-object in /home/tweap2015/public_html/vue/modal/account.php on line 5
+[12-Jul-2015 13:41:49 UTC] PHP Fatal error:  Call to a member function rowCount() on a non-object in /home/tweap2015/public_html/vue/modal/account.php on line 5
+[12-Jul-2015 13:57:47 UTC] PHP Fatal error:  Call to undefined function parsecontent() in /home/tweap2015/public_html/vue/modal/account.php on line 48

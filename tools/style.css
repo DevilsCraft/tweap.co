@@ -1,0 +1,30 @@
+/*Style css en plus de bootstrap*/
+
+.notification{
+	left: -2000px;
+	width: 200px;
+	position: absolute;
+	z-index: 2000; 
+	height: auto;
+	color: white;
+	background-color: #6718b1;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.notification_success{
+	left: -200px;
+	width: 400px;
+	height: 200px;
+	color: #6718b1;
+	background-color: green;
+	text-align: center;
+	font-size: 12px;
+	border-radius: 10px;
+
+}
+
+.text-tweap{
+	color: #6718b1;
+}

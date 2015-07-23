@@ -1,0 +1,119 @@
+<div class="container-fluid">
+	<nav class="col-lg-12 navbar navbar-default">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+		<a href="http://www.tweap.co"><img src="tools/img/logo_menuv2.svg" alt="Tweap.co" /></a>
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="menu">
+
+      <ul class="nav navbar-nav">
+        <li><a data-toggle="modal" style="color:#6718b1;" href="vue/modal/tweap.php" data-target="#modal_tweap"><b>What is Tweap.co ?</b></a></li>
+
+        <div class="modal fade" id="modal_tweap">
+          <div class="modal-dialog">  
+            <div class="modal-content"></div>  
+          </div>
+        </div> 
+
+        <li><a style="color:#6718b1;" data-toggle="modal" data-target="#modal_contribute" href="vue/modal/contribute.php"><b>Contribute</b><span class="sr-only">(current)</span></a></li>
+
+        <div class="modal fade" id="modal_contribute">
+          <div class="modal-dialog">  
+            <div class="modal-content"></div>  
+          </div>
+        </div>
+      </ul>
+
+      <?php if(isset($_SESSION['id_membre'])){ ?>
+        <ul class="nav navbar-right">
+          <li><a data-toggle="modal" style="color:#6718b1;" href="vue/modal/account.php" data-target="#modal_account"><b>Account</b></a></li>
+        
+            <div class="modal fade" id="modal_account">
+              <div class="modal-dialog">  
+                <div class="modal-content"></div>  
+              </div>
+            </div>
+        </ul>
+
+      <?php }else{ ?>
+
+        <div class="hidden-lg">
+
+          <ul class="nav navbar-right">
+            <li><a href="inscription" style="color: #6718b1;"><b>Registration</b></a></li>
+          </ul>
+
+          <ul class="nav navbar-right">
+
+            <li><a data-toggle="modal" class="btn btn-warning" href="vue/modal/login.php" data-target="#modal_login"><b>Sign In</b></a></li>
+          
+            <div class="modal fade" id="modal_login">
+              <div class="modal-dialog">  
+                <div class="modal-content"></div>  
+              </div>
+            </div>
+          </ul>
+        </div>
+
+        <div class="visible-lg">
+          <form action="modele/connexion.php" method="post" class="navbar-form navbar-right">
+            <div id="div_pseudo_menu" class="form-group">
+              <input id="pseudo_menu" name="pseudo_menu" type="text" placeholder="Nickname" class="form-control">
+            </div>
+            <div id="div_mdp_menu" class="form-group">
+              <input id="mdp_menu" name="mdp_menu" type="password" placeholder="Password" class="form-control">
+            </div>
+            <button id="submit_menu" type="submit" class="btn btn-warning"><b>Sign In</b></button>
+              <a id="button_inscription" href="inscription" class="btn btn-default" style="color: #6718b1;"><b>Registration</b></a>
+          </form>
+        </div>
+
+
+      <?php } ?>
+
+    </div>
+	</nav>
+</div><!-- /.container-fluid -->
+
+<script>
+  $(function(){
+
+    $("#submit_menu").click(function(e){
+      e.preventDefault();
+      
+      var pseudo = $("#pseudo_menu").val();
+      var mdp = $("#mdp_menu").val();
+
+      if(pseudo == ""){
+        $("#div_pseudo_menu").addClass("has-error");
+      }else if(mdp == ""){
+        $("#div_mdp_menu").addClass("has-error");
+      }else{
+        $.ajax({
+            type : "POST",
+            url: 'modele/connexion.php',
+            data: 'pseudo=' + pseudo + '&mdp=' + mdp,
+            dataType: 'json',
+            success : function(json) {
+              if(json.reponse == "ok"){
+                location.reload();
+              }else if(json.reponse == "oups_identifiant"){
+                alert('Wrong username or password');
+              }
+            },
+            error: function(json) {
+                alert('Le service est actuellement indisponible');
+            }
+        }); 
+      }
+    });
+  });
+</script>

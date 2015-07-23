@@ -1,0 +1,5 @@
+[20-Jul-2015 16:15:28 UTC] PHP Notice:  Undefined index: id_membre in /home/tweap2015/public_html/tweap.co/modele/spread.php on line 12
+[20-Jul-2015 16:15:28 UTC] PHP Notice:  Undefined index: id_tweet_tweap in /home/tweap2015/public_html/tweap.co/modele/spread.php on line 13
+[20-Jul-2015 16:20:49 UTC] PHP Notice:  Undefined index: id_membre in /home/tweap2015/public_html/tweap.co/modele/spread.php on line 12
+[20-Jul-2015 16:20:49 UTC] PHP Notice:  Undefined index: id_tweet_tweap in /home/tweap2015/public_html/tweap.co/modele/spread.php on line 13
+[20-Jul-2015 16:21:05 UTC] PHP Notice:  Undefined index: id_membre in /home/tweap2015/public_html/tweap.co/modele/spread.php on line 12

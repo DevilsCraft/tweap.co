@@ -1,0 +1,15 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="tools/bootstrap/css/bootstrap.css"> <!-- BOOTSTRAP -->
+<link rel="stylesheet" href="tools/style.css"> <!-- styke en + -->
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script> <!-- JQUERY -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> <!-- JavaScript -->
+<script src="//cdn.ckeditor.com/4.5.0/basic/ckeditor.js"></script> <!-- CKEDITOR -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="Quentin Aslan">
+<meta name="Conceptor" content="Francis Gallant">
+<link rel="icon" type="image/png" href="tools/img/favicon.ico" />
+
+<center>
+	<img src="tools/img/logo.svg" alt="Tweap.co" />
+</center>
+<h1 class="text-tweap">Soory...</h1><br /><br /><h1 class="text-tweap">the site is in development</h1>

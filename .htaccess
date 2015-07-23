@@ -1,0 +1,15 @@
+RewriteEngine On 
+
+RewriteRule    ^index$  /index.php
+RewriteRule    ^index.html$  /index.php
+
+RewriteRule    ^inscription$  /inscription.php
+RewriteRule    ^register$  /inscription.php
+RewriteRule    ^register.html$  /inscription.php
+
+RewriteRule    ^cgu$  /cgu.php
+RewriteRule    ^terms_conditions$  /cgu.php
+RewriteRule    ^terms_conditions.html$  /cgu.php
+
+RewriteRule    ^deconnexion$  /modele/deconnexion.php
+RewriteRule    ^deconnexion.html$  /modele/deconnexion.php
