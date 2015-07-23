@@ -23,27 +23,37 @@
           </div>
         </div> 
 
-        <li><a style="color:#6718b1;" data-toggle="modal" data-target="#modal_contribute" href="vue/modal/contribute.php"><b>Contribute</b><span class="sr-only">(current)</span></a></li>
+        <?php if($_SESSION['verifier'] == 2){
+           echo '<li><a style="color:#6718b1;" href="news?parametre=non_verifier"><b>Contribute</b><span class="sr-only">(current)</span></a></li>';
+          }else{ ?>
 
-        <div class="modal fade" id="modal_contribute">
-          <div class="modal-dialog">  
-            <div class="modal-content"></div>  
-          </div>
-        </div>
-      </ul>
+            <li><a style="color:#6718b1;" data-toggle="modal" data-target="#modal_contribute" href="vue/modal/contribute.php"><b>Contribute</b><span class="sr-only">(current)</span></a></li>
 
-      <?php if(isset($_SESSION['id_membre'])){ ?>
-        <ul class="nav navbar-right">
-          <li><a data-toggle="modal" style="color:#6718b1;" href="vue/modal/account.php" data-target="#modal_account"><b>Account</b></a></li>
-        
-            <div class="modal fade" id="modal_account">
+            <div class="modal fade" id="modal_contribute">
               <div class="modal-dialog">  
                 <div class="modal-content"></div>  
               </div>
             </div>
-        </ul>
+        <?php } ?>
+      </ul>
 
-      <?php }else{ ?>
+      <?php if(isset($_SESSION['id_membre'])){ ?>
+
+        <ul class="nav navbar-right">
+          <?php if($_SESSION['verifier'] == 2){
+           echo '<li><a style="color:#6718b1;" href="news?parametre=non_verifier"><b>Account</b></a></li>';
+          }else{ ?>
+            <li><a data-toggle="modal" style="color:#6718b1;" href="vue/modal/account.php" data-target="#modal_account"><b>Account</b></a></li>
+          
+              <div class="modal fade" id="modal_account">
+                <div class="modal-dialog">  
+                  <div class="modal-content"></div>  
+                </div>
+              </div>
+        </ul>
+          <?php } 
+
+      }else{ ?>
 
         <div class="hidden-lg">
 

@@ -5,8 +5,8 @@
  * @author Quentin Aslan <quentin.aslan@outlook.com>
  */
 $hote = "localhost";  
-$pseudo_bdd = "DevilsCraft";
-$mdp_bdd = "Leatynes99";
+$pseudo_bdd = "github";
+$mdp_bdd = "github";
 $nom_bdd = "tweap";
 
 try {

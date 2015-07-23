@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 
 require_once('../../bdd.php'); 
 
@@ -327,3 +328,4 @@ function parsecontent($text) { // Pour transformer les liens
 		});
 
 	});
+</script>
