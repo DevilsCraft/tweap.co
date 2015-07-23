@@ -30,5 +30,5 @@
 <div class="tab-content">
   <div class="tab-pane fade in active" id="pills_all"><?php include('vue/all_tweet.php'); ?></div>
   <div class="tab-pane fade" id="pills_popular"></div>
-  <div class="tab-pane fade" id="pills_recent"></div>
+  <div class="tab-pane fade" id="pills_recent"><?php include('vue/recent_tweet.php'); ?></div>
 </div>

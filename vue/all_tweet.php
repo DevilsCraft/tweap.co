@@ -35,11 +35,11 @@ if($nb_res == 0){
 
           <div class="panel-footer">
             <center>
-                <a  id="outdated_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-remove-circle"></span></a>
+                <a  id="all_outdated_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-remove-circle"></span></a>
 
-                <a data-toggle="modal" href="#" data-target="#modal_vue_tweet_<?php echo $data['id_tweet']; ?>" id="view_<?php echo $id_tweet_tweap; ?>" name="view_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-eye-open"></span></a>
+                <a data-toggle="modal" href="#" data-target="#all_modal_vue_tweet_<?php echo $data['id_tweet']; ?>" id="all_view_<?php echo $id_tweet_tweap; ?>" name="all_view_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-eye-open"></span></a>
                 <!-- Modal Vue_Tweet-->
-                <div id="modal_vue_tweet_<?php echo $data['id_tweet']; ?>" class="modal fade" role="dialog">
+                <div id="all_modal_vue_tweet_<?php echo $data['id_tweet']; ?>" class="modal fade" role="dialog">
                   <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -83,13 +83,12 @@ if($nb_res == 0){
                <?php  if($nb_ip <> 0){ ?>
                   <button type="button" class="btn btn-warning disabled" style="width:82px;"><b style="color:white;"><?php echo $data['spread']; ?></b></button>
                 <?php }else{ ?>
-                    <button type="submit" name="spread_<?php echo $id_tweet_tweap; ?>" id="spread_<?php echo $id_tweet_tweap; ?>" class="btn btn-warning" style="width:82px;" ><b style="color:white;">SPREAD</b></button>
+                    <button type="submit" name="all_spread_<?php echo $id_tweet_tweap; ?>" id="all_spread_<?php echo $id_tweet_tweap; ?>" class="btn btn-warning" style="width:82px;" ><b style="color:white;">SPREAD</b></button>
                 <?php } ?>
-                <input type="hidden" id="id_tweet_tweap" name="id_tweet_tweap" value="<?php echo $data['id_tweet_tweap']; ?>" />
+                <input type="hidden" id="all_id_tweet_tweap" name="all_id_tweet_tweap" value="<?php echo $data['id_tweet_tweap']; ?>" />
 
                 <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-up"></span></a>
                 <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-down"></span></a>
-            </form>
             </center>
           </div>
         </div>
@@ -98,7 +97,7 @@ if($nb_res == 0){
         $(function(){
           $('[data-toggle="tooltip"]').tooltip()
 
-          $("#spread_<?php echo $id_tweet_tweap; ?>").click(function(e){
+          $("#all_spread_<?php echo $id_tweet_tweap; ?>").click(function(e){
                 var id_tweet_<?php echo $id_tweet_tweap; ?> = <?php echo $id_tweet_tweap; ?>;
 
                 $.ajax({
@@ -108,7 +107,7 @@ if($nb_res == 0){
                   dataType: 'json',
                   success : function(json) {
                       if(json.status == "ok"){
-                        $("#spread_<?php echo $id_tweet_tweap; ?>").replaceWith("<button type='button' class='btn btn-warning disabled' style='width:82px;'><b style='color:white;'>" + json.spread + "</b></button>")
+                        $("#all_spread_<?php echo $id_tweet_tweap; ?>").replaceWith("<button type='button' class='btn btn-warning disabled' style='width:82px;'><b style='color:white;'>" + json.spread + "</b></button>")
                       }
                   },
                   error: function(json) {
@@ -117,7 +116,7 @@ if($nb_res == 0){
                 }); 
 
           });
-          $("#view_<?php echo $id_tweet_tweap; ?>").click(function(e){
+          $("#all_view_<?php echo $id_tweet_tweap; ?>").click(function(e){
             var id_tweet_<?php echo $id_tweet_tweap; ?> = <?php echo $id_tweet_tweap; ?>;
 
                 $.ajax({
@@ -136,7 +135,7 @@ if($nb_res == 0){
                 }); 
           });
 
-          $("#outdated_<?php echo $id_tweet_tweap; ?>").click(function(e){
+          $("#all_outdated_<?php echo $id_tweet_tweap; ?>").click(function(e){
             var id_tweet_<?php echo $id_tweet_tweap; ?> = <?php echo $id_tweet_tweap; ?>;
 
             $.ajax({
