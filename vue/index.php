@@ -6,13 +6,12 @@
    <div class="row">
 
      <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 ">
-      <form action="index.php" method="post">
+      <form action="index" method="get">
          <div class="input-group">
-           <input name="recherche" type="text" value="" placeholder="Search" class="form-control" /> 
+           <input name="search" type="text" value="" placeholder="Search" value="<?php echo $_SESSION['search_url']; ?>" class="form-control" /> 
           <span class="input-group-btn">
           <button type="submit" class="btn btn-warning" type="button"><span class="glyphicon glyphicon-send" style="color:white;"></span></button>
         </div><!-- /input-group -->
-<input type="hidden" name="tweet" value="tweet" />
       </form>
       <br />
       <center>

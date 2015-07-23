@@ -1,10 +1,9 @@
 <?php
-$recherche = $_POST['recherche'];
+$recherche = $_GET['search'];
 
 $rq_select_tweet = $bdd->query("SELECT * FROM tweets WHERE message LIKE '%".$recherche."%' OR pseudo_twitter LIKE '%".$recherche."%' ORDER BY spread DESC ") or die ('Fail INNNNNTTTTEEEERNNNAAAATIOOONAL');
 
 $nb_res = $rq_select_tweet->rowCount();
-$_SESSION['search_url'] = $recherche;
 if($nb_res == 0){
   echo "<div class='alert alert-danger'><h2>Nous somme désolé, votre recherche n'a retourné aucun resultat</h2></div>";
 }else{ ?>
