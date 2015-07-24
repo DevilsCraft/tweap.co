@@ -5,11 +5,11 @@ $rq_select_tweet = $bdd->query("SELECT * FROM tweets WHERE message LIKE '%".$rec
 
 $nb_res = $rq_select_tweet->rowCount();
 if($nb_res == 0){
-  echo "<div class='alert alert-danger'><h2>Nous somme désolé, votre recherche n'a retourné aucun resultat</h2></div>";
+  echo "<div class='alert alert-danger'><h2>Nous sommes désolé, votre recherche n'a retourné aucun resultat</h2></div>";
 }else{ ?>
   <div id="recent_tweet">
     <?php
-while ($data = $rq_select_tweet->fetch() ){
+     while ($data = $rq_select_tweet->fetch() ){
       $nom_twitter = $data['nom_twitter'];
       $pseudo_twitter = $data['pseudo_twitter'];
       $message = $data['message'];
@@ -18,12 +18,17 @@ while ($data = $rq_select_tweet->fetch() ){
       $id_ip = $_SESSION['id_ip'];
       $spread = $data['spread'];
       $view = $data['view'];
+      $like = $data['_like'];
+      $dislike = $data['dislike'];
 
       $rq_verification_ip_outdated = $bdd->query("SELECT * FROM outdated WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
       $nb_ip_outdated = $rq_verification_ip_outdated->rowCount();
 
       $rq_verification_ip_spread = $bdd->query("SELECT * FROM spread WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
       $nb_ip_spread = $rq_verification_ip_spread->rowCount();
+
+      $rq_verification_ip_like = $bdd->query("SELECT * FROM _like WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
+      $nb_ip_like = $rq_verification_ip_like->rowCount();
 
       ?>
 
@@ -64,8 +69,8 @@ while ($data = $rq_select_tweet->fetch() ){
                           <center>
                             <a class="text-tweap btn"><b>Spread</b> <div class="badge"><?php echo $spread; ?></div></a>
                             <a class="text-tweap btn"><span class="glyphicon glyphicon-eye-open"></span> <div class="badge"><?php echo $view; ?></div></a>
-                            <a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-up"></span> <div class="badge">1</div></a>
-                            <a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-down"></span> <div class="badge">1</div></a>
+                            <a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-up"></span> <div class="badge"><?php echo $like; ?></div></a>
+                            <a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-down"></span> <div class="badge"><?php echo $dislike; ?></div></a>
                           </center>
                       </div>
 
@@ -96,8 +101,12 @@ while ($data = $rq_select_tweet->fetch() ){
                 <?php } ?>
                 <input type="hidden" id="recent_id_tweet_tweap" name="recent_id_tweet_tweap" value="<?php echo $data['id_tweet_tweap']; ?>" />
 
-                <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-up"></span></a>
-                <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-down"></span></a>
+                <?php  if($nb_ip_like <> 0){ ?>
+                  <a id="recent_like_<?php echo $id_tweet_tweap; ?>" name="recent_like_<?php echo $id_tweet_tweap; ?>" type="submit" class="btn disabled"><span class="text-tweap glyphicon glyphicon-thumbs-up"></span></a>
+                <?php }else{ ?>
+                  <a id="recent_like_<?php echo $id_tweet_tweap; ?>" name="recent_like_<?php echo $id_tweet_tweap; ?>" type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-up"></span></a>
+                <?php } ?>
+                <a id="recent_dislike_<?php echo $id_tweet_tweap; ?>" type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-down"></span></a>
             </center>
           </div>
         </div>
@@ -163,6 +172,47 @@ while ($data = $rq_select_tweet->fetch() ){
             }); 
 
           });
+
+          $("#recent_like_<?php echo $id_tweet_tweap; ?>").click(function(e){
+            var id_tweet_<?php echo $id_tweet_tweap; ?> = <?php echo $id_tweet_tweap; ?>;
+
+            $.ajax({
+              type : "POST",
+              url: 'modele/like.php',
+              data: 'id_tweet_tweap=' + id_tweet_<?php echo $id_tweet_tweap; ?>,
+              dataType: 'json',
+              success : function(json) {
+                  if(json.status == "ok"){ // ici j'ai utiliser status car j'ai fait un array contenant le nombre de like (pour un test de validité)
+                    $("#recent_like_<?php echo $id_tweet_tweap; ?>").addClass('disabled');
+                  }
+              },
+              error: function(json) {
+                  alert('Le service est actuellement indisponible');
+              }
+            }); 
+
+          });
+
+          $("#recent_dislike_<?php echo $id_tweet_tweap; ?>").click(function(e){
+            var id_tweet_<?php echo $id_tweet_tweap; ?> = <?php echo $id_tweet_tweap; ?>;
+
+            $.ajax({
+              type : "POST",
+              url: 'modele/dislike.php',
+              data: 'id_tweet_tweap=' + id_tweet_<?php echo $id_tweet_tweap; ?>,
+              dataType: 'json',
+              success : function(json) {
+                  if(json.reponse == "ok"){
+                    $("#recent_dislike_<?php echo $id_tweet_tweap; ?>").addClass('disabled');
+                  }
+              },
+              error: function(json) {
+                  alert('Le service est actuellement indisponible');
+              }
+            }); 
+
+          });
+
         });
       </script>
     <?php } ?>
