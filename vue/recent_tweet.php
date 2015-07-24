@@ -157,6 +157,6 @@ if($nb_res == 0){
           });
         });
       </script>
-    </div>
-  <?php }
-} ?>
+    <?php } ?>
+  </div>
+<?php } ?>

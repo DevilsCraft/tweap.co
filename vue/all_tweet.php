@@ -156,9 +156,9 @@ if($nb_res == 0){
           });
         });
       </script>
-    </div>
-  <?php }
-}
+    <?php } ?>
+  </div>
+<?php }
 
 function parsecontent($text) {
     $text = preg_replace('#http://[a-z0-9._/-]+#i', '<a  target="_blank" href="$0">$0</a>', $text); //Link
