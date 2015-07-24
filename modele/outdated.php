@@ -1,7 +1,7 @@
 <?php
 /**
- * Description : Script qui delete un Spread au bout de 3 outdated.
- * Crée me 21/07/2015
+ * Description : Script qui delete un Spread au bout de 1 outdated + si un tweet a 0 de spread, cela ne fait rien)
+ * Crée le 21/07/2015
  * @author Quentin Aslan <quentin.aslan@outlook.com> 
 */
 require_once('../bdd.php');
@@ -24,9 +24,13 @@ if($outdated == 3 or 6 or 9 or 12 or 15 or 18 or 21 or 25 or 28 or 31 or 34 or 3
 	$data = $recuperation_spread->fetch();
 
 	$spread = $data['spread'];
-	$spread--;
-
-	$ajout_spread = $bdd->query("UPDATE tweets SET spread = '$spread' WHERE id_tweet_tweap = '$id_tweet_tweap' ");
+	if($spread == 0){
+		// on fait rien car il est déja a 0
+	}else{
+		
+		$spread--;
+		$ajout_spread = $bdd->query("UPDATE tweets SET spread = '$spread' WHERE id_tweet_tweap = '$id_tweet_tweap' ");
+	}
 }
 
 $ajout_securite = $bdd->query("INSERT INTO outdated (id_outdated, id_ip, id_tweet_tweap) VALUES ('', '$id_ip', '$id_tweet_tweap') ");
