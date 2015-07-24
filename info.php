@@ -34,8 +34,11 @@ session_start();
     	}else if($parametre == "contribute_ok"){
             echo "<div class='well'><h3 class='text-tweap'>Votre tweet a bien été ajouté</h2></div>";
     		include('vue/index.php');
-    	}else{
-          include('vue/index.php');
+    	}else if($parametre == "edit_membre_ok"){
+            echo "<div class='well'><h3 class='text-tweap'>Your account has been modified</h3></div>";
+            include('vue/index.php');
+        }else{
+            include('vue/index.php');
         }  ?>
     </section>
       

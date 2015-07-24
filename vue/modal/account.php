@@ -297,7 +297,7 @@ function parsecontent($text) { // Pour transformer les liens
 
 				    	if(json.reponse == "ok"){
 
-				    	$("#submit_edit_membre").replaceWith("<h3 class='text-tweap'>Your account has been modified</h3>");
+				    	window.location.replace("http://tweap.co/news?parametre=edit_membre_ok")
 
 				    	}else if(json.reponse == "oups_email"){
 
