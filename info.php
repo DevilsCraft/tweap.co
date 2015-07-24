@@ -31,9 +31,12 @@ session_start();
     	}else if($parametre == 'non_verifier'){
     		echo "<div class='well'><h1 class='text-tweap'> Votre compte n'a pas encore été verfié, merci de verifier votre boite mail</h1></div>";
     		include('vue/inscription.php');
-    	}else{
+    	}else if($parametre == "contribute_ok"){
+            echo "<div class='well'><h3 class='text-tweap'>Votre tweet a bien été ajouté</h2></div>";
     		include('vue/index.php');
-    	}?>
+    	}else{
+          include('vue/index.php');
+        }  ?>
     </section>
       
     <footer>

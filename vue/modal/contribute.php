@@ -75,7 +75,7 @@
 			    dataType: 'json',
 			    success : function(json) {
 			    	if(json.reponse == "ok"){
-			    		$('#modal_contribute').modal('hide');
+			    		window.location.replace("http://tweap.co/news?parametre=contribute_ok");
 			    	}else if(json.reponse == "oups_twitter.com"){
 			    		$("#oups_url").each(function(){
 							$(this).css('top', '94px');
