@@ -21,6 +21,8 @@ if(!empty($_POST['pseudo']) && !empty($_POST['mdp'])){
 		$_SESSION['email'] = $data['email'];
 		$_SESSION['spread'] = $data['spread'];
 		$_SESSION['view'] = $data['view'];
+		$_SESSION['like'] = $data['like'];
+		$_SESSION['dislike'] = $data['dislike'];
 		$_SESSION['verifier'] = $data['verifier'];
 
 		$reponse = "ok";

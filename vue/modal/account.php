@@ -75,7 +75,7 @@ $nb_contribution = $rq_recuperation_contributions->rowCount();
 
 				<br />
 
-				<b>Like</b>: --
+				<b>Like</b>: <?php echo $_SESSION['like']; ?>
 
 				<br />
 
@@ -113,6 +113,8 @@ $nb_contribution = $rq_recuperation_contributions->rowCount();
 
 					    $view = $data_contributions['view'];
 
+					    $like = $data_contributions['_like'];
+
 					    $spread = $data_contributions['spread']; ?>
 
 					    
@@ -141,9 +143,9 @@ $nb_contribution = $rq_recuperation_contributions->rowCount();
 
 						        	<a class="text-tweap btn"><span class="glyphicon glyphicon-eye-open"></span> <div class="badge"><?php echo $view; ?></div></a>
 
-						        	<a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-up"></span> <div class="badge">1</div></a>
+						        	<a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-up"></span> <div class="badge"><?php echo $like; ?></div></a>
 
-						        	<a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-down"></span> <div class="badge">1</div></a>
+						        	<a class="text-tweap btn"><span class="glyphicon glyphicon-thumbs-down"></span> <div class="badge">0</div></a>
 
 								</center>
 

@@ -27,7 +27,6 @@ if($outdated == 3 or 6 or 9 or 12 or 15 or 18 or 21 or 25 or 28 or 31 or 34 or 3
 	if($spread == 0){
 		// on fait rien car il est déja a 0
 	}else{
-		
 		$spread--;
 		$ajout_spread = $bdd->query("UPDATE tweets SET spread = '$spread' WHERE id_tweet_tweap = '$id_tweet_tweap' ");
 	}

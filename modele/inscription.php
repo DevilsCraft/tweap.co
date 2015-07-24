@@ -14,7 +14,7 @@ if(!empty($_POST['pseudo']) && !empty($_POST['email']) && !empty($_POST['mdp']) 
 			$mdp = $_POST['mdp'];
 			$token = sha1(uniqid(rand()));
 			
-			$rq = $bdd->prepare("INSERT INTO membres (id_membre, pseudo, mdp, email, date, spread, view, token, verifier) VALUES ('', :pseudo, :mdp, :email, NOW(), '0', '0', '$token', '2')");
+			$rq = $bdd->prepare("INSERT INTO membres (id_membre, pseudo, mdp, email, date, spread, view, _like, dislike, token, verifier) VALUES ('', :pseudo, :mdp, :email, NOW(), '0', '0', '0', '0', $token', '2')");
 			$rq->execute(array('pseudo' => $pseudo,
 							   'mdp' => $mdp,
 							   'email' => $email)) or die('Une erreur est survenue');
