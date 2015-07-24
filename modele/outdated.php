@@ -9,6 +9,7 @@ session_start();
 
 $id_membre = $_SESSION['id_membre'];
 $id_tweet_tweap = $_POST['id_tweet_tweap'];
+$id_ip = $_SESSION['id_ip'];
 
 $recuperation_outdated = $bdd->query("SELECT * FROM tweets WHERE id_tweet_tweap = '$id_tweet_tweap'");
 $data = $recuperation_outdated->fetch();
@@ -27,6 +28,8 @@ if($outdated == 3 or 6 or 9 or 12 or 15 or 18 or 21 or 25 or 28 or 31 or 34 or 3
 
 	$ajout_spread = $bdd->query("UPDATE tweets SET spread = '$spread' WHERE id_tweet_tweap = '$id_tweet_tweap' ");
 }
+
+$ajout_securite = $bdd->query("INSERT INTO outdated (id_outdated, id_ip, id_tweet_tweap) VALUES ('', '$id_ip', '$id_tweet_tweap') ");
 
 $reponse = "ok";
 

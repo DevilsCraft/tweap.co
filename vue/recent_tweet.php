@@ -7,19 +7,24 @@ $nb_res = $rq_select_tweet->rowCount();
 if($nb_res == 0){
   echo "<div class='alert alert-danger'><h2>Nous somme désolé, votre recherche n'a retourné aucun resultat</h2></div>";
 }else{ ?>
-  <div id="all_tweet">
+  <div id="recent_tweet">
     <?php
-    while ($data = $rq_select_tweet->fetch() ){
+while ($data = $rq_select_tweet->fetch() ){
       $nom_twitter = $data['nom_twitter'];
       $pseudo_twitter = $data['pseudo_twitter'];
       $message = $data['message'];
       $id_tweet = $data['id_tweet'];
       $id_tweet_tweap = $data['id_tweet_tweap'];
       $id_ip = $_SESSION['id_ip'];
-      $rq_verification_ip = $bdd->query("SELECT * FROM spread WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
-      $nb_ip = $rq_verification_ip->rowCount();
       $spread = $data['spread'];
       $view = $data['view'];
+
+      $rq_verification_ip_outdated = $bdd->query("SELECT * FROM outdated WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
+      $nb_ip_outdated = $rq_verification_ip_outdated->rowCount();
+
+      $rq_verification_ip_spread = $bdd->query("SELECT * FROM spread WHERE id_tweet_tweap = '$id_tweet_tweap' AND id_ip = '$id_ip' ");
+      $nb_ip_spread = $rq_verification_ip_spread->rowCount();
+
       ?>
 
       <div class="col-lg-3 col-md-6">
@@ -35,7 +40,11 @@ if($nb_res == 0){
 
           <div class="panel-footer">
             <center>
-                <a  id="recent_outdated_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-remove-circle"></span></a>
+                <?php  if($nb_ip_outdated <> 0){ ?>
+                  <a  id="recent_outdated_<?php echo $id_tweet_tweap; ?>" class="btn disabled"><span class="text-tweap glyphicon glyphicon-remove-circle"></span></a>
+                <?php }else{ ?>
+                  <a  id="recent_outdated_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-remove-circle"></span></a>
+                <?php } ?>
 
                 <a data-toggle="modal" href="#" data-target="#recent_modal_vue_tweet_<?php echo $data['id_tweet']; ?>" id="recent_view_<?php echo $id_tweet_tweap; ?>" name="recent_view_<?php echo $id_tweet_tweap; ?>" class="btn"><span class="text-tweap glyphicon glyphicon-eye-open"></span></a>
                 <!-- Modal Vue_Tweet-->
@@ -80,7 +89,7 @@ if($nb_res == 0){
                   </div>
                 </div> <!-- Fin de la modal vue_tweet --> 
 
-               <?php  if($nb_ip <> 0){ ?>
+               <?php  if($nb_ip_spread <> 0){ ?>
                   <button type="button" class="btn btn-warning disabled" style="width:82px;"><b style="color:white;"><?php echo $data['spread']; ?></b></button>
                 <?php }else{ ?>
                     <button type="submit" name="recent_spread_<?php echo $id_tweet_tweap; ?>" id="recent_spread_<?php echo $id_tweet_tweap; ?>" class="btn btn-warning" style="width:82px;" ><b style="color:white;">SPREAD</b></button>
@@ -89,7 +98,6 @@ if($nb_res == 0){
 
                 <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-up"></span></a>
                 <a type="submit" class="btn"><span class="text-tweap glyphicon glyphicon-thumbs-down"></span></a>
-            </form>
             </center>
           </div>
         </div>
@@ -146,7 +154,7 @@ if($nb_res == 0){
               dataType: 'json',
               success : function(json) {
                   if(json.reponse == "ok"){
-                    alert('Votre report a bien été enregister');
+                    $("#recent_outdated_<?php echo $id_tweet_tweap; ?>").addClass('disabled');
                   }
               },
               error: function(json) {
