@@ -19,16 +19,14 @@ require_once('tools/head_php.php');
 		<header>
 			<?php include('tools/menu.html'); ?>
 		</header>
-                
-    <section>
-      <?php include('vue/index.php'); ?>
-    </section>
-      
-    <footer>
-      <?php include('tools/footer.html'); ?>
-    </footer>
 
+		<section>
+			<?php include('vue/index.php'); ?>
+		</section>
+
+		<footer>
+			<?php include('tools/footer.html'); ?>
+		</footer>
 	</div>
-
 </body>
 </html>
